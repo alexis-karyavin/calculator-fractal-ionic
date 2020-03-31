@@ -1,0 +1,7 @@
+<div class="container-fraction">
+  <div class="sign" *ngIf="frac.sign < 0">-</div>
+  <div class="fraction">
+    <ion-input placeholder="0" required type="number" [(ngModel)]="frac.numerator"></ion-input>
+    <ion-input placeholder="0" required type="number" [(ngModel)]="frac.denominator"></ion-input>
+  </div>
+</div>

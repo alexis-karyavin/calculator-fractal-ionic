@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Калькулятор дробей
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <div class="app">
+      <app-fraction [frac]="frac1"></app-fraction>
+      <div class="container-buttons-operation">
+        <ion-button (click)="sum(frac1, frac2)" color="primary">+</ion-button>
+        <ion-button (click)="diff(frac1, frac2)" color="primary">-</ion-button>
+        <ion-button (click)="multi(frac1, frac2)" color="primary">*</ion-button>
+        <ion-button (click)="div(frac1, frac2)" color="primary">/</ion-button>
+      </div>
+      <app-fraction [frac]="frac2"></app-fraction>
+    </div>
+    <div class="result">
+      <p>Результат:</p>
+      <app-fraction *ngIf="fracRes.denominator !== 1; else elseBlock" [frac]="fracRes"></app-fraction>
+      <ng-template #elseBlock>
+        {{ fracRes.numerator }}
+      </ng-template>
+      <ng-container *ngIf="fracRes.denominator !== 1">
+        <ion-button *ngIf="fracRes.denominator !== 1" (click)="showDecimalFrac()" color="primary">Перевести в десятичную дробь</ion-button>
+        <p *ngIf="this.fracRes.toDecimal() !== 0">
+          {{ decimalFrac }}
+        </p>
+      </ng-container>
+
+    </div>
+  </div>
+</ion-content>
